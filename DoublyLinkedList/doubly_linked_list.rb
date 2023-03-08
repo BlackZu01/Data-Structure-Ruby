@@ -14,7 +14,7 @@ class DoublyLinkedList
         unless @root 
             @root = @tail = new_node
         end 
-        new_node.prev = @tail 
+        new_node.prev = @tail
         @tail.next = new_node
         @tail = @tail.next
 
@@ -25,6 +25,24 @@ class DoublyLinkedList
             self.add_node(data)
         end 
     end
+
+    def remove_node(value)
+        current = @root 
+        while current 
+            if current.value == value 
+                if current.value == @root.value 
+                    @root = @root.next 
+                elsif current.value == @tail.value
+                    @tail = @tail.prev
+                    @tail.next = nil
+                else 
+                    current.prev.next = current.next
+                    current.next.prev = current.prev 
+                end
+            end 
+            current = current.next 
+        end 
+    end 
 
     def values
         prov = []
@@ -49,6 +67,6 @@ list.add_node(37)
 list.add_node(7)
 
 list.add_multiples_nodes([1, 2, 3])
-
+list.remove_node(37)
 
 puts list
