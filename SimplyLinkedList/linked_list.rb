@@ -52,10 +52,20 @@ class LinkedList
         return prov 
     end 
 
-    def show_list
-        node = @root 
+    # Es como __repr__() en python
+    def to_s
         return self.values.join(' -> ')
     end
+
+    def find_node(value)
+        nodeTemp = @root
+
+        while nodeTemp
+            return true if nodeTemp.value == value 
+            nodeTemp = nodeTemp.next 
+        end
+        return false
+    end 
 end
 
 list = LinkedList.new
@@ -65,8 +75,8 @@ list.add_node(7)
 list.add_node(73)
 
 list.remove_node(7)
-puts list.show_list
+puts list
 
 list.add_multiples_nodes([1, 3, 5, 9, 4])
 
-puts list.show_list
+puts list
