@@ -57,6 +57,15 @@ class DoublyLinkedList
     def to_s 
         return self.values.join(' <-> ')
     end 
+    
+    def is_in(value)
+        current = @root 
+        while current 
+            return true if current.value == value 
+            current = current.next
+        end 
+        return false
+    end 
 end
 
 list = DoublyLinkedList.new 
@@ -70,3 +79,5 @@ list.add_multiples_nodes([1, 2, 3])
 list.remove_node(37)
 
 puts list
+
+puts list.is_in(7)
